@@ -25,7 +25,7 @@ rule gfold:
     output:
         gfold="results/gfold/{sample_one}-{unit_one}_vs_{sample_two}-{unit_two}.tsv",
     log:
-        "results/gfold/{sample}-{unit}.log",
+        "logs/gfold/{sample_one}-{unit_one}_vs_{sample_two}-{unit_two}.log",
     conda:
         "envs/gfold.yaml"
     params:
