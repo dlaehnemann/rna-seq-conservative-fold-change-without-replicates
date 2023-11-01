@@ -2,6 +2,7 @@
 # Please follow the best practices: 
 # https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
 # in particular regarding the standardized folder structure mentioned there. 
+from os import path
 
 rule kallisto_quant_to_gfold_input:
     input:
@@ -15,3 +16,24 @@ rule kallisto_quant_to_gfold_input:
     script:
         "scripts/kallisto_quant_to_gfold_input.R"
     
+rule gfold:
+    input:
+        one="results/gfold_input/{sample_one}-{unit_one}.tsv"
+        two="results/gfold_input/{sample_two}-{unit_two}.tsv"
+    output:
+        gfold="results/gfold/{sample_one}-{unit_one}_vs_{sample_two}-{unit_two}.tsv"
+    log:
+        "results/gfold/{sample}-{unit}.log"
+    conda:
+        "envs/gfold.yaml"
+    params:
+        (one,ext)=lambda wc, input: path.splitext(input.one)
+        two=lambda wc, input: path.splitext(input.two)[0]
+    shell:
+        "( gfold diff "
+        "    -s1 {params.one} "
+        "    -s2 {params.two} "
+        "    -suf {params.ext} "
+        "    -norm NO "
+        "    -o {output.gfold}"
+        ") 2>{log}"
