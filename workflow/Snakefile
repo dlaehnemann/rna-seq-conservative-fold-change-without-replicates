@@ -2,3 +2,16 @@
 # Please follow the best practices: 
 # https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
 # in particular regarding the standardized folder structure mentioned there. 
+
+rule kallisto_quant_to_gfold_input:
+    input:
+        kallisto_folder="results/kallisto_cdna/{sample}-{unit}/"
+    output:
+        gfold_tsv="results/gfold_input/{sample}-{unit}.tsv"
+    log:
+        "logs/gfold_input/{sample}-{unit}.log"
+    conda:
+        "envs/tidyverse.yaml"
+    script:
+        "scripts/kallisto_quant_to_gfold_input.R"
+    
