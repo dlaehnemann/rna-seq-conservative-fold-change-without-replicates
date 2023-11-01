@@ -4,6 +4,9 @@
 # in particular regarding the standardized folder structure mentioned there.
 from os import path
 
+rule all:
+    input:
+        "results/gfold/A-1_vs_B-1.tsv"
 
 rule kallisto_quant_to_gfold_input:
     input:
