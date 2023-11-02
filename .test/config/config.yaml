@@ -1,0 +1,14 @@
+gfold:
+  # Path to a kallisto results folder, that should contain one folder each for
+  # each of the samples that are to be contrasted below. The sample-specific
+  # subfolders must each contain a file named `abundance.tsv`.
+  kallisto_path: "copied_kallisto_quant"
+  contrasts:
+    # Contrast names can be chose arbitrarily, we recommend descriptive names.
+    B-1_vs_A-1:
+      # `baseline` and `changed` need to specify existing "{sample}-{unit}"
+      # combinations, as available from the kallisto output (and as usually
+      # specified in the units.tsv). Fold changes are computed by comparing
+      # the value of `changed` against the value of `baseline`. 
+      baseline: "A-1"
+      changed: "B-1"
