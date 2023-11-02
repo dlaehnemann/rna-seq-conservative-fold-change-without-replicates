@@ -34,6 +34,7 @@ rule gfold:
         "    -o {output.gfold}"
         ") 2>{log}"
 
+
 rule clean_and_sort_gfold:
     input:
         gfold="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.tsv",
@@ -66,12 +67,16 @@ rule gfold_datavzrd:
         gfold_table="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
     output:
         report(
-            directory("results/datavzrd-reports/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"),
+            directory(
+                "results/datavzrd-reports/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"
+            ),
             htmlindex="index.html",
             caption="../report/gfold-table.rst",
             category="gfold",
             patterns=["index.html"],
-            labels={"contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"},
+            labels={
+                "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"
+            },
         ),
     log:
         "logs/datavzrd-reports/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
