@@ -5,6 +5,7 @@ def final_output(wildcards):
         final_output.extend(
             [
                 f"results/gfold/{contrast['changed']}_vs_{contrast['baseline']}.tsv",
+                f"results/datavzrd-reports/gfold/{contrast['changed']}_vs_{contrast['baseline']}",
             ]
         )
     return final_output

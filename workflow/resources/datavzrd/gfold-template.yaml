@@ -1,0 +1,49 @@
+name: ?f"Conservative fold change estimates for the contrast of {wildcards.sample_changed}-{wildcards.units_changed} vs. {wildcards.sample_baseline}-{wildcards.units_baseline}."
+datasets:
+  gfold_table:
+    path: ?input.gfold_table
+    offer-excel: true
+    separator: "\t"
+    header: 10
+default-view: gfold_table
+views:
+  gfold_table:
+    dataset: gfold_table
+    desc: |
+        ?f"Conservative fold change estimates for the contrast of {wildcards.sample_changed}-{wildcards.units_changed} vs. {wildcards.sample_baseline}-{wildcards.units_baseline}."
+    page-size: 25
+    render-table:
+      columns:
+        transcript_id:
+          display-mode: normal
+          link-to-url: 
+            reactome:
+              url: "https://www.ensembl.org/Homo_sapiens/Transcript/Summary?t={transcript_id}"
+        gfold_0_01:
+          plot:
+            heatmap:
+              scale: linear
+              range:
+                - "#e6550d"
+                - "white"
+                - "#6baed6"
+              domain:
+                - -1
+                - 0
+                - 1
+        e_fdr:
+          plot:
+            bars:
+              scale: linear
+        log2fdc:
+          plot:
+            bars:
+              scale: linear
+        rpkm_baseline:
+          plot:
+            bars:
+              scale: linear
+        rpkm_changed:
+          plot:
+            bars:
+              scale: linear
