@@ -1,4 +1,3 @@
-
 def final_output(wildcards):
     final_output = []
     for c in config["gfold"]["contrasts"]:
@@ -10,7 +9,9 @@ def final_output(wildcards):
         )
     return final_output
 
+
 ## input functions
+
 
 def get_kallisto_output_folder(wildcards):
     return f"{config['gfold']['kallisto_path']}/{wildcards.sample}-{wildcards.unit}"

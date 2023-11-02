@@ -4,11 +4,14 @@
 # in particular regarding the standardized folder structure mentioned there.
 from os import path
 
+
 configfile: "config/config.yaml"
+
 
 include: "rules/common.smk"
 include: "rules/gfold.smk"
 
+
 rule all:
     input:
-        final_output
+        final_output,
