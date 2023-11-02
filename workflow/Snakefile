@@ -4,42 +4,11 @@
 # in particular regarding the standardized folder structure mentioned there.
 from os import path
 
+configfile: "config/config.yaml"
+
+include: "rules/common.smk"
+include: "rules/gfold.smk"
+
 rule all:
     input:
-        "results/gfold/A-1_vs_B-1.tsv"
-
-rule kallisto_quant_to_gfold_input:
-    input:
-        kallisto_folder="results/kallisto_cdna/{sample}-{unit}/",
-    output:
-        gfold_tsv="results/gfold_input/{sample}-{unit}.tsv",
-    log:
-        "logs/gfold_input/{sample}-{unit}.log",
-    conda:
-        "envs/tidyverse.yaml"
-    script:
-        "scripts/kallisto_quant_to_gfold_input.R"
-
-
-rule gfold:
-    input:
-        one="results/gfold_input/{sample_one}-{unit_one}.tsv",
-        two="results/gfold_input/{sample_two}-{unit_two}.tsv",
-    output:
-        gfold="results/gfold/{sample_one}-{unit_one}_vs_{sample_two}-{unit_two}.tsv",
-    log:
-        "logs/gfold/{sample_one}-{unit_one}_vs_{sample_two}-{unit_two}.log",
-    conda:
-        "envs/gfold.yaml"
-    params:
-        one=lambda wc, input: path.splitext(input.one)[0],
-        ext=lambda wc, input: path.splitext(input.one)[1],
-        two=lambda wc, input: path.splitext(input.two)[0],
-    shell:
-        "( gfold diff "
-        "    -s1 {params.one} "
-        "    -s2 {params.two} "
-        "    -suf {params.ext} "
-        "    -norm NO "
-        "    -o {output.gfold}"
-        ") 2>{log}"
+        final_output

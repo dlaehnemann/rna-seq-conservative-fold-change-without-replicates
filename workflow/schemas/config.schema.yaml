@@ -1,0 +1,30 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+
+description: snakemake workflow configuration file
+
+type: object
+
+properties:
+  gfold:
+    type: object
+    properties:
+      kallisto_path:
+        type: string
+      contrasts:
+        type: object
+        patternProperties:
+          "^.+$":
+            type: object
+            properties:
+              baseline:
+                type: string
+              changed:
+                type: string
+            required:
+              - baseline
+              - changed
+    required:
+      - kallisto_path
+      - contrasts
+required:
+  - gfold
