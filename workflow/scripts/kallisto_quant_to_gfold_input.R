@@ -5,8 +5,7 @@ sink(log, type="message")
 library(tidyverse)
 
 read_tsv(
-    str_c(snakemake@input[["kallist_folder"]], "abundance.tsv")
-) |>
+    str_c(snakemake@input[["kallisto_folder"]], "/", "abundance.tsv")
   select(
     target_id,
     target_id,
