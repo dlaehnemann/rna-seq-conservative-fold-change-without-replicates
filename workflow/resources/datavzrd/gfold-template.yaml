@@ -4,7 +4,6 @@ datasets:
     path: ?input.gfold_table
     offer-excel: true
     separator: "\t"
-    header: 10
 default-view: gfold_table
 views:
   gfold_table:
