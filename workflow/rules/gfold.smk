@@ -30,7 +30,7 @@ rule gfold:
         "    -s1 {params.baseline} "
         "    -s2 {params.changed} "
         "    -suf {params.ext} "
-        "    -norm NO "
+        "    -norm DESeq "
         "    -o {output.gfold}"
         ") 2>{log}"
 

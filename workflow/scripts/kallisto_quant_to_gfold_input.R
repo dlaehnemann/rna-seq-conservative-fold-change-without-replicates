@@ -13,8 +13,7 @@ read_tsv(
   ) |>
   select(
     target_id,
-    repeat_id,
-    tpm,
+    est_counts,
     eff_length,
     RPKM
   ) |>
