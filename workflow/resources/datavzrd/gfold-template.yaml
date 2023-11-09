@@ -16,8 +16,13 @@ views:
         transcript_id:
           display-mode: normal
           link-to-url: 
-            reactome:
+            Ensembl:
               url: "https://www.ensembl.org/Homo_sapiens/Transcript/Summary?t={transcript_id}"
+        gene_symbol:
+          display-mode: normal
+          link-to-url: 
+            GeneCards:
+              url: "https://www.genecards.org/cgi-bin/carddisp.pl?gene={gene_symbol}"
         gfold_0_01:
           plot:
             heatmap:

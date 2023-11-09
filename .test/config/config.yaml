@@ -3,6 +3,7 @@ gfold:
   # each of the samples that are to be contrasted below. The sample-specific
   # subfolders must each contain a file named `abundance.tsv`.
   kallisto_path: "copied_kallisto_quant"
+  transcripts_annotation: "copied_transcripts_annotation/transcripts_annotation.results.rds"
   contrasts:
     # Contrast names can be chose arbitrarily, we recommend descriptive names.
     B-1_vs_A-1:

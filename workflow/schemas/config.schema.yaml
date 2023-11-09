@@ -10,6 +10,8 @@ properties:
     properties:
       kallisto_path:
         type: string
+      transcripts_annotation:
+        type: string
       contrasts:
         type: object
         patternProperties:
@@ -25,6 +27,7 @@ properties:
               - changed
     required:
       - kallisto_path
+      - transcripts_annotation
       - contrasts
 required:
   - gfold

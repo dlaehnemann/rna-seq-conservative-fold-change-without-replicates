@@ -8,10 +8,8 @@ read_tsv(
     snakemake@input[["gfold"]],
     comment = "# "
 ) |>
-  select(
-    !`#GeneSymbol`
-  ) |>
   rename(
+    gene_symbol = `#GeneSymbol`
     transcript_id = GeneName,
     gfold_0_01 = `GFOLD(0.01)`,
     e_fdr = `E-FDR`,

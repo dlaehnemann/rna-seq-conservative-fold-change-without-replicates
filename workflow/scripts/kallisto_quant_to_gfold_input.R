@@ -4,14 +4,21 @@ sink(log, type="message")
 
 library(tidyverse)
 
+t2g <- read_rds(snakemake@input[["transcripts_annotation"]]) |>
+  select(
+    target_id,
+    ext_gene
+  )
+
 read_tsv(
     str_c(snakemake@input[["kallisto_folder"]], "/", "abundance.tsv")
 ) |>
+  left_join(target_id) |>
   mutate(
-    repeat_id = target_id,
     RPKM = "NA"
   ) |>
   select(
+    ext_gene,
     target_id,
     est_counts,
     eff_length,

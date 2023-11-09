@@ -16,3 +16,6 @@ def final_output(wildcards):
 
 def get_kallisto_output_folder(wildcards):
     return f"{config['gfold']['kallisto_path']}/{wildcards.sample}-{wildcards.unit}"
+
+def get_transcript_annotation(wildcards):
+    return f"{config['gfold']['transcripts_annotation']}"
