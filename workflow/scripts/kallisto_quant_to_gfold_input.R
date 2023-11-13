@@ -13,7 +13,13 @@ t2g <- read_rds(snakemake@input[["transcripts_annotation"]]) |>
 read_tsv(
     str_c(snakemake@input[["kallisto_folder"]], "/", "abundance.tsv")
 ) |>
-  left_join(target_id) |>
+  mutate(
+    target_id_no_version = str_replace(target_id, "\\.\\d", "")
+  ) |>
+  left_join(
+    t2g,
+    by = join_by(target_id_no_version == target_id)
+  ) |>
   mutate(
     RPKM = "NA"
   ) |>
