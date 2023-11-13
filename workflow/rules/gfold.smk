@@ -82,4 +82,4 @@ rule gfold_datavzrd:
     log:
         "logs/datavzrd-reports/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
     wrapper:
-        "v2.9.1/utils/datavzrd"
+        "v2.12.0/utils/datavzrd"

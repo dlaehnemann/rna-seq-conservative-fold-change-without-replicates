@@ -24,60 +24,15 @@ views:
             GeneCards:
               url: "https://www.genecards.org/cgi-bin/carddisp.pl?gene={gene_symbol}"
         gfold_0_01:
-          custom-plot:
-            data: |
-              function(value, row) {
-                // Generate data for this cell, having access to the value and any other values from
-                // the same row.
-                return [{"gfold": value}]
-              }
-            spec: |
-              {
-                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                "mark": {
-                  "type": "rect",
-                  "align": "left"
-                },
-                "encoding": {
-                  "x": {
-                    "field": "dummy",
-                    "axis": {
-                      "labelExpr": "gfold_0.01",
-                      "labelAngle": -90,
-                      "title": null,
-                      "ticks": false,
-                      "orient": "top",
-                      "domain": false
-                    }
-                  },
-                  "y": {
-                    "field": "index",
-                    "type": "ordinal",
-                    "axis": null
-                  },
-                  "color": {
-                    "field": "gfold",
-                    "type": "quantitative",
-                    "scale": {
-                      "domainMid": 0
-                    }
-                  }
-                },
-                "mark": {
-                  "type": "text",
-                  "align":"left",
-                  "xOffset": -6
-                },
-                "encoding": {
-                  "text": {"field": "gfold"},
-                  "y": {
-                    "field": "index",
-                    "type": "ordinal",
-                    "axis": null
-                  }
-                },
-                "config": {"legend": {"disable": true}}
-              }
+          plot:
+            heatmap:
+              type: quantitative
+              scale: linear
+              range:
+                - "#e6550d"
+                - "white"
+                - "#6baed6"
+              domain-mid: 0
         e_fdr:
           plot:
             ticks:
@@ -87,6 +42,11 @@ views:
             heatmap:
               type: quantitative
               scale: linear
+              range:
+                - "#e6550d"
+                - "white"
+                - "#6baed6"
+              domain-mid: 0
         rpkm_baseline:
           plot:
             ticks:
