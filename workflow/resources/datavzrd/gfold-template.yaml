@@ -37,17 +37,18 @@ views:
                 - 1
         e_fdr:
           plot:
-            bars:
+            ticks:
               scale: linear
         log2fdc:
           plot:
-            bars:
+            heatmap:
+              type: quantitative
               scale: linear
         rpkm_baseline:
           plot:
-            bars:
+            ticks:
               scale: linear
         rpkm_changed:
           plot:
-            bars:
+            ticks:
               scale: linear
