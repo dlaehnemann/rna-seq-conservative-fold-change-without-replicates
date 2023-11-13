@@ -1,7 +1,7 @@
 rule kallisto_quant_to_gfold_input:
     input:
         kallisto_folder=get_kallisto_output_folder,
-        transcript_annotation=get_transcript_annotation,
+        transcripts_annotation=get_transcripts_annotation,
     output:
         gfold_tsv="results/gfold_input/{sample}-{unit}.tsv",
     log:
