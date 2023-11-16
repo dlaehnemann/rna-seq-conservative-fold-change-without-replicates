@@ -36,15 +36,15 @@ universe <- all_tested_annotated |>
 
 columns <- c(
   "Name",
-  "Status",
-  "Combined FDR",
-  "total perturbation accumulation",
   "number of genes on the pathway",
   "number of DE genes per pathway",
   "p-value for at least NDE genes",
-  "Combined Bonferroni p-values",
+  "total perturbation accumulation",
   "p-value to observe a total accumulation",
   "Combined p-value",
+  "Combined FDR",
+  "Combined Bonferroni p-values",
+  "Status",
   "pathway id"
 )
 
@@ -95,14 +95,14 @@ if (nrow(changed_genes) == 0) {
             join_by(Name == pathway_name)
           ) |>
           rename(
-            "Combined Bonferroni p-values" = "pGFWER",
-            "Combined FDR" = "pGFdr",
-            "total perturbation accumulation" = "tA",
             "number of genes on the pathway" = "pSize",
             "number of DE genes per pathway" = "NDE",
-            "Combined p-value" = "pG",
+            "p-value for at least NDE genes" = "pNDE",
+            "total perturbation accumulation" = "tA",
             "p-value to observe a total accumulation" = "pPERT",
-            "p-value for at least NDE genes" = "pNDE"
+            "Combined p-value" = "pG",
+            "Combined FDR" = "pGFdr",
+            "Combined Bonferroni p-values" = "pGFWER"
           ) |>
           dplyr::select(
             all_of(

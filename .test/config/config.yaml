@@ -34,4 +34,4 @@ enrichment:
     activate_gfold: True
     # pathway database to use in SPIA, needs to be available for
     # the species specified by resources -> ref -> species above
-    pathway_database: "reactome"
+    pathway_database: "panther"

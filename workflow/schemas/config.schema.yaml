@@ -29,5 +29,18 @@ properties:
       - kallisto_path
       - transcripts_annotation
       - contrasts
+  enrichment:
+    type: object
+    properties:
+      spia:
+        type: object
+        properties:
+          activate_gfold:
+            type: string
+      required:
+        - activate_gfold
+  required:
+    - spia
 required:
   - gfold
+  - enrichment

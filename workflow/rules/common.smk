@@ -8,6 +8,12 @@ def final_output(wildcards):
                 f"results/datavzrd-reports/gfold/{contrast['changed']}_vs_{contrast['baseline']}",
             ]
         )
+        if config["enrichment"]["spia"]["activate_gfold"]:
+            final_output.extend(
+                [
+                    f"results/datavzrd-reports/spia/{contrast['changed']}_vs_{contrast['baseline']}",
+                ]
+            )
     return final_output
 
 
