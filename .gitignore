@@ -6,3 +6,4 @@ logs/**
 .test/logs/**
 .test/results/**
 .test/resources/**
+.test/*.zip
