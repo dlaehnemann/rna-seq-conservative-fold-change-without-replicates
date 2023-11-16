@@ -5,3 +5,4 @@ logs/**
 .snakemake/**
 .test/logs/**
 .test/results/**
+.test/resources/**
