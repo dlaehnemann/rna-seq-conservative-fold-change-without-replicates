@@ -33,9 +33,9 @@ views:
             heatmap:
               scale: linear
               range:
-                - "#e6550d"
-                - "white"
-                - "#6baed6"
+                - "#B2182B"
+                - "#F7F7F7"
+                - "#2166AC"
               domain-mid: 0
         e_fdr:
           plot:
@@ -46,9 +46,9 @@ views:
             heatmap:
               scale: linear
               range:
-                - "#e6550d"
-                - "white"
-                - "#6baed6"
+                - "#B2182B"
+                - "#F7F7F7"
+                - "#2166AC"
               domain-mid: 0
         rpkm_baseline:
           plot:

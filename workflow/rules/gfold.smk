@@ -53,7 +53,7 @@ rule clean_and_sort_gfold:
 
 rule render_datavzrd_config_gfold:
     input:
-        template=workflow.source_path("../resources/datavzrd/gfold-template.yaml"),
+        template=workflow.source_path("../resources/datavzrd/gfold_template.yaml"),
         gfold_table="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
     output:
         "results/datavzrd/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.yaml",
@@ -74,7 +74,7 @@ rule gfold_datavzrd:
                 "results/datavzrd-reports/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"
             ),
             htmlindex="index.html",
-            caption="../report/gfold-table.rst",
+            caption="../report/gfold_table.rst",
             category="gfold",
             patterns=["index.html"],
             labels={
