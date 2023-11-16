@@ -18,6 +18,11 @@ views:
           link-to-url: 
             Ensembl:
               url: "https://www.ensembl.org/Homo_sapiens/Transcript/Summary?t={transcript_id}"
+        gene_id:
+          display-mode: normal
+          link-to-url: 
+            Ensembl:
+              url: "https://www.ensembl.org/Homo_sapiens/Gene/Summary?g={gene_id}"
         gene_symbol:
           display-mode: normal
           link-to-url: 

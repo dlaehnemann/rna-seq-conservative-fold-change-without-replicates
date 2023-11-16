@@ -1,9 +1,20 @@
+resources:
+  ref:
+    # ensembl species name
+    species: homo_sapiens
+    # ensembl release version
+    release: "104"
+    # genome build
+    build: GRCh38
+
 gfold:
   # Path to a kallisto results folder, that should contain one folder each for
   # each of the samples that are to be contrasted below. The sample-specific
   # subfolders must each contain a file named `abundance.tsv`.
   kallisto_path: "copied_kallisto_quant"
   transcripts_annotation: "copied_transcripts_annotation/transcripts_annotation.results.rds"
+  # File that contains spia database.
+  spia_db: "copied_spia_db/spia-db.rds"
   contrasts:
     # Contrast names can be chose arbitrarily, we recommend descriptive names.
     B-1_vs_A-1:
@@ -13,3 +24,14 @@ gfold:
       # the value of `changed` against the value of `baseline`. 
       baseline: "A-1"
       changed: "B-1"
+
+# This section is usually already included in the config.yaml file of a
+# workflow that produces the required input counts, for example:
+# https://snakemake.github.io/snakemake-workflow-catalog/?repo=snakemake-workflows/rna-seq-kallisto-sleuth
+enrichment:
+  spia:
+    # tool is only run if set to `True`
+    activate_gfold: True
+    # pathway database to use in SPIA, needs to be available for
+    # the species specified by resources -> ref -> species above
+    pathway_database: "reactome"

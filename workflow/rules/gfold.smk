@@ -39,8 +39,10 @@ rule gfold:
 rule clean_and_sort_gfold:
     input:
         gfold="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.tsv",
+        transcripts_annotation=get_transcripts_annotation,
     output:
         cleaned="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
+        all_tested_annotated="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.all_tested_annotated.tsv",
     log:
         "logs/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.log",
     conda:
