@@ -1,5 +1,6 @@
 import yaml
 
+
 def get_bioc_species_name():
     first_letter = config["resources"]["ref"]["species"][0]
     subspecies = config["resources"]["ref"]["species"].split("_")[1]
@@ -32,6 +33,7 @@ enrichment_env = render_enrichment_env()
 
 def get_spia_db(wildcards):
     return config["gfold"]["spia_db"]
+
 
 rule spia:
     input:
@@ -73,12 +75,16 @@ rule spia_datavzrd:
         spia_table="results/spia/tables/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.spia_pathways.tsv",
     output:
         report(
-            directory("results/datavzrd-reports/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"),
+            directory(
+                "results/datavzrd-reports/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"
+            ),
             htmlindex="index.html",
             caption="../report/spia_table.rst",
             category="Pathway enrichment",
             patterns=["index.html"],
-            labels={"contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"},
+            labels={
+                "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"
+            },
         ),
     log:
         "logs/datavzrd-reports/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
