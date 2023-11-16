@@ -16,12 +16,11 @@ views:
         Name:
           display-mode: normal
           link-to-url: 
-            reactome:
+            pathway:
               ?if params.pathway_db == "reactome":
                 url: "http://reactome.org/PathwayBrowser/#/{pathway id}"
               ?elif params.pathway_db == "panther":
                 url: "https://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession={pathway id}"
-
         number of genes on the pathway:
           plot:
             heatmap:
