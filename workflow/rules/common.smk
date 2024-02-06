@@ -51,6 +51,21 @@ def get_bioc_species_pkg():
 
 bioc_species_pkg = get_bioc_species_pkg()
 
+def get_gseapy_species_name(ensembl_species_name):
+    match ensembl_species_name:
+        case "homo_sapiens":
+            return "human"
+        case "mus_musculus":
+            return "mouse"
+        case "saccharomyces_cerevisiae":
+            return "Yeast"
+        case "drosophila_melanogaster":
+            return "Fly"
+        case "danio_rerio":
+            return "Fish"
+        case "caenorhabditis_elegans":
+            return "Worm"
+
 
 def render_enrichment_env():
     species_pkg = f"bioconductor-{get_bioc_species_pkg()}"
