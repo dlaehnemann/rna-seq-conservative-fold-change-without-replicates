@@ -51,6 +51,7 @@ def get_bioc_species_pkg():
 
 bioc_species_pkg = get_bioc_species_pkg()
 
+
 def get_gseapy_species_name(ensembl_species_name):
     match ensembl_species_name:
         case "homo_sapiens":
