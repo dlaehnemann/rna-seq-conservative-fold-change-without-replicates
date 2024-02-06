@@ -65,7 +65,7 @@ rule gseapy:
     log:
         "logs/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.log",
     params:
-        species=config["resources"]["ref"]["species"],
+        species=get_gseapy_species_name(config["resources"]["ref"]["species"]),
     conda:
         "../envs/gseapy.yaml"
     script:
