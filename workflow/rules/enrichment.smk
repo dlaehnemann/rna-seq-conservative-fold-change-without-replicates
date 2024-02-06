@@ -26,7 +26,7 @@ rule render_datavzrd_config_spia:
     params:
         pathway_db=config["enrichment"]["spia"]["pathway_database"],
     log:
-        "logs/datavzrd/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.spia_pathways.yte_rendering.log",
+        "logs/datavzrd-render/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.spia_pathways.yte_rendering.log",
     template_engine:
         "yte"
 
@@ -78,6 +78,8 @@ rule render_gseapy_datavzrd_config:
         enrichment="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
     output:
         "resources/datavzrd/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.yaml",
+    log:
+        "logs/datavzrd-render/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.log",
     template_engine:
         "yte"
 
