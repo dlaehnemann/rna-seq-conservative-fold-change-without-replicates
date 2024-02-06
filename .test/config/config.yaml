@@ -38,3 +38,11 @@ enrichment:
     # pathway database to use in SPIA, needs to be available for
     # the species specified by resources -> ref -> species above
     pathway_database: "panther"
+  gseapy:
+    # tool is only run if set to `True`
+    activate_gfold: True
+  # list of enrichr libraries/genesets to use for gseapy, for options see:
+  # https://maayanlab.cloud/Enrichr/#libraries
+  enrichr_libraries:
+    - MSigDB_Hallmark_2020
+    - MSigDB_Computational

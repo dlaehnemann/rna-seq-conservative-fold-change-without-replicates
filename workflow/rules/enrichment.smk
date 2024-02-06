@@ -43,13 +43,62 @@ rule spia_datavzrd:
             ),
             htmlindex="index.html",
             caption="../report/spia_table.rst",
-            category="Pathway enrichment",
+            category="Enrichment analysis",
             patterns=["index.html"],
             labels={
-                "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"
+                "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}",
+                "enrichment": "pathway",
             },
         ),
     log:
         "logs/datavzrd-reports/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
     wrapper:
         "v2.12.0/utils/datavzrd"
+
+
+rule gseapy:
+    input:
+        filtered="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
+        unfiltered="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.all_tested_annotated.tsv",
+    output:
+        "results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
+    log:
+        "logs/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.log",
+    params:
+        species=config["resources"]["ref"]["species"],
+    conda:
+        "../envs/gseapy.yaml"
+    script:
+        "../scripts/gsea.py"
+
+
+rule render_gseapy_datavzrd_config:
+    input:
+        template=workflow.source_path("../resources/datavzrd/gseapy_template.yaml"),
+        enrichment="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
+    output:
+        "resources/datavzrd/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.yaml",
+    template_engine:
+        "yte"
+
+
+use rule spia_datavzrd as gseapy_datavzrd with:
+    input:
+        config="resources/datavzrd/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.yaml",
+        table="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
+    output:
+        report(
+            directory(
+                "results/datavzrd/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}"
+            ),
+            htmlindex="index.html",
+            category="Enrichment analysis",
+            subcategory="{enrichr_library}",
+            caption="../report/gseapy.rst",
+            labels={
+                "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}",
+                "enrichment": "gene set",
+            },
+        ),
+    log:
+        "logs/datavzrd-reports/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.{enrichr_library}.log",
