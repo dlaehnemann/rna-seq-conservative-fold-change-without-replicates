@@ -39,8 +39,17 @@ properties:
             type: string
       required:
         - activate_gfold
+    properties:
+      gseapy:
+        type: object
+        properties:
+          activate_gfold:
+            type: string
+      required:
+        - activate_gfold
   required:
     - spia
+    - gseapy
 required:
   - gfold
   - enrichment
