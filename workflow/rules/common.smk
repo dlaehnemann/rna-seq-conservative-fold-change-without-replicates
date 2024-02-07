@@ -20,6 +20,15 @@ def final_output(wildcards):
                     f"results/datavzrd-reports/spia/{contrast['changed']}_vs_{contrast['baseline']}",
                 ]
             )
+        if config["enrichment"]["gseapy"]["activate_gfold"]:
+            final_output.extend(
+                expand(
+                    "results/datavzrd/gseapy/{contrast}/{enrichr_library}",
+                    contrast=f"{contrast['changed']}_vs_{contrast['baseline']}",
+                    enrichr_library=config["enrichment"]["enrichr_libraries"],
+                )
+            )
+
     return final_output
 
 
@@ -41,6 +50,22 @@ def get_bioc_species_pkg():
 
 
 bioc_species_pkg = get_bioc_species_pkg()
+
+
+def get_gseapy_species_name(ensembl_species_name):
+    match ensembl_species_name:
+        case "homo_sapiens":
+            return "human"
+        case "mus_musculus":
+            return "mouse"
+        case "saccharomyces_cerevisiae":
+            return "Yeast"
+        case "drosophila_melanogaster":
+            return "Fly"
+        case "danio_rerio":
+            return "Fish"
+        case "caenorhabditis_elegans":
+            return "Worm"
 
 
 def render_enrichment_env():

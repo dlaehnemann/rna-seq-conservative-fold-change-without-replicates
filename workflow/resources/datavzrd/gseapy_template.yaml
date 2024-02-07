@@ -1,0 +1,72 @@
+name: ?f"Enrichment of {wildcards.enrichr_library} for {wildcards.sample_changed}-{wildcards.unit_changed} compared to {wildcards.sample_baseline}-{wildcards.unit_baseline}"
+
+datasets:
+  enrichment:
+    path: ?input.enrichment
+    separator: "\t"
+
+views:
+  enrichment:
+    dataset: enrichment
+    page-size: 18
+    desc: |
+      Enrichment analysis of all gene sets in {wildcards.enrichr_library}.
+
+      * term: gene set name
+      * overlap: number of genes that have a significantly non-zero fold change (according to GFOLD) vs. all measured genes in the gene set
+      * p-value: p-value of hypergeometric test for the null hypothesis that the gene set is not enriched
+      * FDR: false discovery rate calculated with Benjamini-Hochberg method
+      * genes: genes that have a significantly non-zero fold change (according to GFOLD)
+
+    render-table:
+      columns:
+        term:
+          link-to-url:
+            linkout:
+              url: "{linkout}"
+        linkout:
+          display-mode: hidden
+        p-value:
+          plot:
+            heatmap:
+              scale: linear
+              domain:
+                - 0.0
+                - 0.049
+                - 0.05
+                - 0.051
+                - 1.0
+              range:
+                - "#a1d99b"
+                - "#ecf7eb"
+                - white
+                - "#ffeedf"
+                - "#fdae6b"
+        FDR:
+          plot:
+            heatmap:
+              scale: linear
+              domain:
+                - 0.0
+                - 0.049
+                - 0.05
+                - 0.051
+                - 1.0
+              range:
+                - "#a1d99b"
+                - "#ecf7eb"
+                - white
+                - "#ffeedf"
+                - "#fdae6b"
+        odds ratio:
+          plot:
+            heatmap:
+              scale: linear
+              color-scheme: blues
+        genes:
+          custom: |
+            function(value) {
+              return value.split(";").map(function(gene) {
+                return `<a href="https://www.genecards.org/cgi-bin/carddisp.pl?gene=${gene}"><span class="badge badge-info">${gene}</span></a>`
+              })
+            }
