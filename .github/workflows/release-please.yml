@@ -10,8 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: GoogleCloudPlatform/release-please-action@v4
+      - uses: google-github-actions/release-please-action@v4
         id: release
         with:
-          release-type: go # just keep a changelog, no version anywhere outside of git tags
+          # this assumes that you have created a personal access token
+          # (PAT) and configured it as a GitHub action secret named
+          # `MY_RELEASE_PLEASE_TOKEN` (this secret name is not important).
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN_DL }}
+          # this is a built-in strategy in release-please, see "Action Inputs"
+          # for more options
+          release-type: go
           package-name: rna-seq-conservative-fold-change-without-replicates
