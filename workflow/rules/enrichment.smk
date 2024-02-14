@@ -1,5 +1,6 @@
 rule spia:
     input:
+        filtered="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
         all_tested_annotated="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.all_tested_annotated.tsv",
         spia_db=get_spia_db,
     output:
@@ -53,7 +54,7 @@ rule spia_datavzrd:
     log:
         "logs/datavzrd-reports/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
     wrapper:
-        "v2.12.0/utils/datavzrd"
+        "v3.3.6/utils/datavzrd"
 
 
 rule gseapy:

@@ -47,6 +47,8 @@ rule clean_and_sort_gfold:
         "logs/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.log",
     conda:
         "../envs/tidyverse.yaml"
+    params:
+        gfold_0_01_cutoff=config["gfold"]["gfold_0_01_cutoff"],
     script:
         "../scripts/clean_and_sort_gfold.R"
 

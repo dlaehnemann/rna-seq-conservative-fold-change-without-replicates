@@ -4,6 +4,8 @@ sink(log, type="message")
 
 library(tidyverse)
 
+gfold_0_01_cutoff <- as.numeric(snakemake@params[["gfold_0_01_cutoff"]])
+
 t2g <- read_rds(snakemake@input[["transcripts_annotation"]]) |>
   select(
     target_id,
@@ -23,7 +25,7 @@ all_tested_annotated <- read_tsv(
     rpkm_changed = `2ndRPKM`
   ) |>
   mutate(
-    transcript_id_no_version = str_replace(transcript_id, "\\.\\d", "")
+    transcript_id_no_version = str_replace(transcript_id, "\\.\\d+", "")
   ) |>
   left_join(
     t2g,
@@ -43,7 +45,7 @@ write_tsv(
 
 all_tested_annotated |>
   filter(
-    gfold_0_01 != 0
+    abs(gfold_0_01) > gfold_0_01_cutoff
   ) |>
   arrange(
     desc(gfold_0_01)
