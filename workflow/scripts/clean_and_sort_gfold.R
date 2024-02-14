@@ -23,7 +23,7 @@ all_tested_annotated <- read_tsv(
     rpkm_changed = `2ndRPKM`
   ) |>
   mutate(
-    transcript_id_no_version = str_replace(transcript_id, "\\.\\d", "")
+    transcript_id_no_version = str_replace(transcript_id, "\\.\\d+", "")
   ) |>
   left_join(
     t2g,
