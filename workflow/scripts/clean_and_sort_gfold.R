@@ -4,6 +4,8 @@ sink(log, type="message")
 
 library(tidyverse)
 
+gfold_0_01_cutoff <- as.numeric(snakemake@params[["gfold_0_01_cutoff"]])
+
 t2g <- read_rds(snakemake@input[["transcripts_annotation"]]) |>
   select(
     target_id,
@@ -43,7 +45,7 @@ write_tsv(
 
 all_tested_annotated |>
   filter(
-    gfold_0_01 != 0
+    abs(gfold_0_01) > gfold_0_01_cutoff
   ) |>
   arrange(
     desc(gfold_0_01)
