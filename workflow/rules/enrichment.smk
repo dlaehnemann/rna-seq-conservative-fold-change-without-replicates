@@ -54,7 +54,7 @@ rule spia_datavzrd:
     log:
         "logs/datavzrd-reports/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
     wrapper:
-        "v2.12.0/utils/datavzrd"
+        "v3.3.6/utils/datavzrd"
 
 
 rule gseapy:
