@@ -26,7 +26,7 @@ gfold:
       changed: "B-1"
   # only absolute values of gfold_0_01 greater than this value will be
   # considered differentially expressed for downstream analysis
-  gfold_0_01_cutoff: "0.1"
+  gfold_0_01_cutoff: "0.01"
 
 # This section is usually already included in the config.yaml file of a
 # workflow that produces the required input counts, for example:

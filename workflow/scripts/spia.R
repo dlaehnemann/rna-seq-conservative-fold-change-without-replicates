@@ -12,27 +12,25 @@ db <- readRDS(snakemake@input[["spia_db"]])
 
 options(Ncpus = snakemake@threads)
 
-all_tested_annotated <- read_tsv(snakemake@input[["all_tested_annotated"]]) |>
+universe <- read_tsv(snakemake@input[["all_tested_annotated"]]) |>
     drop_na(gene_id) |>
     mutate(
-        gene_id = str_c("ENSEMBL:", gene_id),
-    )
+        gene_id = str_c("ENSEMBL:", gene_id)
+    ) |>
+    dplyr::select(gene_id) |>
+    distinct() |>
+    pull(gene_id)
 
-
-changed_genes <- all_tested_annotated |>
+changed_genes <- read_tsv(snakemake@input[["filtered"]]) |>
     mutate(
-        abs_gfold = abs(gfold_0_01)
+        abs_gfold = abs(gfold_0_01),
+        gene_id = str_c("ENSEMBL:", gene_id)
     ) |>
     group_by(gene_id) |>
     slice_max(
         abs_gfold,
         with_ties = FALSE
     )
-
-universe <- all_tested_annotated |>
-    dplyr::select(gene_id) |>
-    distinct() |>
-    pull(gene_id)
 
 columns <- c(
   "Name",
