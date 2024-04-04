@@ -27,6 +27,10 @@ views:
                 url: "https://www.pharmgkb.org/pathway/{pathway id}"
               ?elif params.pathway_db == "wikipathways":
                 url: "https://www.wikipathways.org/pathways/{pathway id}.html"
+              ?elif params.pathway_db == "smpdb":
+                url: "https://smpdb.ca/view/{pathway id}"
+              ?elif params.pathway_db == "pathbank":
+                url: "https://pathbank.org/view/{pathway id}"
               ?else:
                 url:
                   ?f"https://duckduckgo.com/?q={params.pathway_db}+{{pathway id}}"
