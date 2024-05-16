@@ -14,7 +14,7 @@ read_tsv(
     str_c(snakemake@input[["kallisto_folder"]], "/", "abundance.tsv")
 ) |>
   mutate(
-    target_id_no_version = str_replace(target_id, "\\.\\d", "")
+    target_id_no_version = str_replace(target_id, "\\.\\d+", "")
   ) |>
   left_join(
     t2g,
