@@ -45,6 +45,7 @@ rule spia_datavzrd:
             htmlindex="index.html",
             caption="../report/spia_table.rst",
             category="Enrichment analysis",
+            subcategory="spia",
             patterns=["index.html"],
             labels={
                 "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}",
@@ -96,7 +97,7 @@ use rule spia_datavzrd as gseapy_datavzrd with:
             ),
             htmlindex="index.html",
             category="Enrichment analysis",
-            subcategory="{enrichr_library}",
+            subcategory="gseapy: {enrichr_library}",
             caption="../report/gseapy.rst",
             labels={
                 "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}",
