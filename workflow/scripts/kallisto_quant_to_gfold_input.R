@@ -7,7 +7,8 @@ library(tidyverse)
 t2g <- read_rds(snakemake@input[["transcripts_annotation"]]) |>
   select(
     target_id,
-    ext_gene
+    ext_gene,
+    ens_gene
   )
 
 read_tsv(
