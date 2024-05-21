@@ -21,7 +21,8 @@ read_tsv(
     by = join_by(target_id_no_version == target_id)
   ) |>
   mutate(
-    RPKM = "NA"
+    RPKM = "NA",
+    ext_gene = if_else(is.na(ext_gene), ens_gene, ext_gene)
   ) |>
   select(
     ext_gene,

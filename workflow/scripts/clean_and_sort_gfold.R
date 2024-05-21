@@ -36,9 +36,6 @@ all_tested_annotated <- read_tsv(
   ) |>
   rename(
     gene_id = ens_gene
-  ) |>
-  mutate(
-    gene_symbol = if_else(is.na(gene_symbol), gene_id, gene_symbol)
   )
 
 write_tsv(
