@@ -5,10 +5,12 @@ sink(log, type="message")
 library(tidyverse)
 
 t2g <- read_rds(snakemake@input[["transcripts_annotation"]]) |>
+  mutate(
+    ext_gene = if_else(ext_gene == "", ens_gene, ext_gene)
+  ) |>
   select(
     target_id,
-    ext_gene,
-    ens_gene
+    ext_gene
   )
 
 read_tsv(
@@ -22,8 +24,7 @@ read_tsv(
     by = join_by(target_id_no_version == target_id)
   ) |>
   mutate(
-    RPKM = "NA",
-    ext_gene = if_else(is.na(ext_gene), ens_gene, ext_gene)
+    RPKM = "NA"
   ) |>
   select(
     ext_gene,
