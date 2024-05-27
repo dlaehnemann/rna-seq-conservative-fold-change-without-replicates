@@ -63,11 +63,14 @@ rule gseapy:
         filtered="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
         unfiltered="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.all_tested_annotated.tsv",
     output:
-        "results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
+        tsv="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
+        dotplot_top_n_genes="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.top_n_genes.dotplot.pdf",
+        barplot_top_n_genes="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.top_n_genes.barplot.pdf",
     log:
         "logs/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.log",
     params:
         species=get_gseapy_species_name(config["resources"]["ref"]["species"]),
+        number_of_top_genes=config["enrichment"]["gseapy"].get("top_n", 5),
     conda:
         "../envs/gseapy.yaml"
     script:

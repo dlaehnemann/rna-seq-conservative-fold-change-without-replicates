@@ -41,6 +41,8 @@ enrichment:
   gseapy:
     # tool is only run if set to `True`
     activate_gfold: True
+    # number of top ranked genes to include in plots
+    top_n: 5
   # list of enrichr libraries/genesets to use for gseapy, for options see:
   # https://maayanlab.cloud/Enrichr/#libraries
   enrichr_libraries:
