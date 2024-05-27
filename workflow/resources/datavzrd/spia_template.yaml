@@ -2,7 +2,6 @@ name: ?f"spia pathway impact analysis for contrast {wildcards.sample_changed}-{w
 datasets:
   spia_table:
     path: ?input.spia_table
-    offer-excel: true
     separator: "\t"
 default-view: spia_table
 views:
