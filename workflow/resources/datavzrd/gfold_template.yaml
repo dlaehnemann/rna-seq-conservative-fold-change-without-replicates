@@ -2,7 +2,6 @@ name: ?f"Conservative fold change estimates for the contrast of {wildcards.sampl
 datasets:
   gfold_table:
     path: ?input.gfold_table
-    offer-excel: true
     separator: "\t"
 default-view: gfold_table
 views:

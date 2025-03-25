@@ -45,6 +45,7 @@ rule spia_datavzrd:
             htmlindex="index.html",
             caption="../report/spia_table.rst",
             category="Enrichment analysis",
+            subcategory="spia",
             patterns=["index.html"],
             labels={
                 "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}",
@@ -62,11 +63,14 @@ rule gseapy:
         filtered="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
         unfiltered="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.all_tested_annotated.tsv",
     output:
-        "results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
+        tsv="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
+        dotplot_top_n_genes="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.top_n_genes.dotplot.pdf",
+        barplot_top_n_genes="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.top_n_genes.barplot.pdf",
     log:
         "logs/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.log",
     params:
         species=get_gseapy_species_name(config["resources"]["ref"]["species"]),
+        number_of_top_genes=config["enrichment"]["gseapy"].get("top_n", 5),
     conda:
         "../envs/gseapy.yaml"
     script:
@@ -96,7 +100,7 @@ use rule spia_datavzrd as gseapy_datavzrd with:
             ),
             htmlindex="index.html",
             category="Enrichment analysis",
-            subcategory="{enrichr_library}",
+            subcategory="gseapy: {enrichr_library}",
             caption="../report/gseapy.rst",
             labels={
                 "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}",

@@ -2,7 +2,6 @@ name: ?f"spia pathway impact analysis for contrast {wildcards.sample_changed}-{w
 datasets:
   spia_table:
     path: ?input.spia_table
-    offer-excel: true
     separator: "\t"
 default-view: spia_table
 views:
@@ -21,6 +20,19 @@ views:
                 url: "http://reactome.org/PathwayBrowser/#/{pathway id}"
               ?elif params.pathway_db == "panther":
                 url: "https://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession={pathway id}"
+              ?elif params.pathway_db == "kegg":
+                url: "https://www.genome.jp/entry/pathway+{pathway id}"
+              ?elif params.pathway_db == "pharmgkb":
+                url: "https://www.pharmgkb.org/pathway/{pathway id}"
+              ?elif params.pathway_db == "wikipathways":
+                url: "https://www.wikipathways.org/pathways/{pathway id}.html"
+              ?elif params.pathway_db == "smpdb":
+                url: "https://smpdb.ca/view/{pathway id}"
+              ?elif params.pathway_db == "pathbank":
+                url: "https://pathbank.org/view/{pathway id}"
+              ?else:
+                url:
+                  ?f"https://duckduckgo.com/?q={params.pathway_db}+{{pathway id}}"
         number of genes on the pathway:
           plot:
             heatmap:

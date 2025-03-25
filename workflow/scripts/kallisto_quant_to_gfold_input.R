@@ -5,6 +5,9 @@ sink(log, type="message")
 library(tidyverse)
 
 t2g <- read_rds(snakemake@input[["transcripts_annotation"]]) |>
+  mutate(
+    ext_gene = if_else(ext_gene == "", ens_gene, ext_gene)
+  ) |>
   select(
     target_id,
     ext_gene
@@ -14,7 +17,7 @@ read_tsv(
     str_c(snakemake@input[["kallisto_folder"]], "/", "abundance.tsv")
 ) |>
   mutate(
-    target_id_no_version = str_replace(target_id, "\\.\\d", "")
+    target_id_no_version = str_replace(target_id, "\\.\\d+", "")
   ) |>
   left_join(
     t2g,
