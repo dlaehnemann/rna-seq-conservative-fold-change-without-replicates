@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.4.0](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/compare/v1.3.0...v1.4.0) (2025-03-25)
+
+
+### Features
+
+* add dotplot and barplot to gseapy output (for top_n genes, configurable via config.yaml) ([ea45fe5](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/ea45fe5cc71a048a98a3a5cc8b37f147935c2487))
+* add pathbank and smpdb linkouts to spia_template.yaml ([41318ea](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/41318ea59505fcb90d7e1738bb60eba0f4dcc5be))
+* handle all possible graphite pathwayDatabases in spia_template.yaml ([b15649a](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/b15649ad16d07fb18a62a3e11594c6d6e3d9776d))
+
+
+### Bug Fixes
+
+* fill in NA values in gene_symbol column with the ens_gene ID ([d58d6ea](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/d58d6ea7dc1aab594df736224ddd284dde245f71))
+* keep ens_gene around as backup ([d05a820](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/d05a82010689abf6a4d06225dbceb5ae2a5ba07d))
+* replace empty ext_gene/gene_symbol entries with ens_gene ID ([2b48b31](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/2b48b3151daf3404ae9cd54317306ec779c4db8c))
+
+
+### Performance Improvements
+
+* improve annotation of spia results in report ([aeb19c1](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/aeb19c1d313a2c45f32797d33ab39a317f36b897))
+* remove excel file creations in datavzrd templates (should speed up datavzrd rules considerably) ([818264b](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/818264b46074c2ae035df6676257ac0247ef96e6))
+
 ## [1.3.0](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/compare/v1.2.0...v1.3.0) (2024-02-14)
 
 
