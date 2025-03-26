@@ -68,7 +68,7 @@ rule gseapy:
 use rule spia_datavzrd as gseapy_datavzrd with:
     input:
         config=workflow.source_path("../resources/datavzrd/gseapy_template.yaml"),
-        table="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
+        enrichment="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
     output:
         report(
             directory(
