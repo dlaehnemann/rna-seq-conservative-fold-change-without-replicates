@@ -18,23 +18,9 @@ rule spia:
         "../scripts/spia.R"
 
 
-rule render_datavzrd_config_spia:
-    input:
-        template=workflow.source_path("../resources/datavzrd/spia_template.yaml"),
-        spia_table="results/spia/tables/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.spia_pathways.tsv",
-    output:
-        "results/datavzrd/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.spia_pathways.yaml",
-    params:
-        pathway_db=config["enrichment"]["spia"]["pathway_database"],
-    log:
-        "logs/datavzrd-render/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.spia_pathways.yte_rendering.log",
-    template_engine:
-        "yte"
-
-
 rule spia_datavzrd:
     input:
-        config="results/datavzrd/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.spia_pathways.yaml",
+        config=workflow.source_path("../resources/datavzrd/spia_template.yaml"),
         # files required for rendering the given configs
         spia_table="results/spia/tables/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.spia_pathways.tsv",
     output:
@@ -54,8 +40,10 @@ rule spia_datavzrd:
         ),
     log:
         "logs/datavzrd-reports/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
+    params:
+        pathway_db=config["enrichment"]["spia"]["pathway_database"],
     wrapper:
-        "v3.3.6/utils/datavzrd"
+        "v5.9.0/utils/datavzrd"
 
 
 rule gseapy:
@@ -77,21 +65,9 @@ rule gseapy:
         "../scripts/gsea.py"
 
 
-rule render_gseapy_datavzrd_config:
-    input:
-        template=workflow.source_path("../resources/datavzrd/gseapy_template.yaml"),
-        enrichment="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
-    output:
-        "resources/datavzrd/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.yaml",
-    log:
-        "logs/datavzrd-render/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.log",
-    template_engine:
-        "yte"
-
-
 use rule spia_datavzrd as gseapy_datavzrd with:
     input:
-        config="resources/datavzrd/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.yaml",
+        config=workflow.source_path("../resources/datavzrd/gseapy_template.yaml"),
         table="results/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.tsv",
     output:
         report(
