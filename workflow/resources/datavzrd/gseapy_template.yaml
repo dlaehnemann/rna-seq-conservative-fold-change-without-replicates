@@ -1,3 +1,5 @@
+__use_yte__: true
+
 name: ?f"Enrichment of {wildcards.enrichr_library} for {wildcards.sample_changed}-{wildcards.unit_changed} compared to {wildcards.sample_baseline}-{wildcards.unit_baseline}"
 
 datasets:
