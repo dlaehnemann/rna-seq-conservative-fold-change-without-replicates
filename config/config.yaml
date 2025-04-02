@@ -21,12 +21,15 @@ gfold:
   spia_db: "resources/spia-db.rds"
   contrasts:
     # Contrast names can be chose arbitrarily, we recommend descriptive names.
-    B-1_vs_A-1:
+    B-1_vs_A-1_C-1:
       # `baseline` and `changed` need to specify existing "{sample}-{unit}"
       # combinations, as available from the kallisto output (and as usually
-      # specified in the units.tsv). Fold changes are computed by comparing
-      # the value of `changed` against the value of `baseline`. 
-      baseline: "A-1"
+      # specified in the units.tsv). Each can contain a comma-separated list
+      # of multiple {sample}-{unit} combinations, wherever replicates are
+      # available.
+      # Fold changes are computed by comparing the value of `changed` samples
+      # against the value of `baseline` samples. 
+      baseline: "A-1,C-1"
       changed: "B-1"
   # only absolute values of gfold_0_01 greater than this value will be
   # considered differentially expressed for downstream analysis
