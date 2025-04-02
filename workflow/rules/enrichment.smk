@@ -38,6 +38,7 @@ rule spia_datavzrd:
                 "enrichment": "pathway",
             },
         ),
+        config="results/datavzrd/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.spia_pathways.yaml",
     log:
         "logs/datavzrd-reports/spia/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
     params:
@@ -83,5 +84,6 @@ use rule spia_datavzrd as gseapy_datavzrd with:
                 "enrichment": "gene set",
             },
         ),
+        config="resources/datavzrd/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}/{enrichr_library}.yaml",
     log:
         "logs/datavzrd-reports/gseapy/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.{enrichr_library}.log",

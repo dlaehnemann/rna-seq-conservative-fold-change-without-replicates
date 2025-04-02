@@ -71,6 +71,7 @@ rule gfold_datavzrd:
                 "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"
             },
         ),
+        config="results/datavzrd/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.yaml",
     log:
         "logs/datavzrd-reports/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
     wrapper:
