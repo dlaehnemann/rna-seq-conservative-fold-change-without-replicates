@@ -1,6 +1,6 @@
 __use_yte__: true
 
-name: ?f"spia pathway impact analysis for contrast {wildcards.sample_changed}-{wildcards.unit_changed}_vs_{wildcards.sample_baseline}-{wildcards.unit_baseline}"
+name: ?f"spia pathway impact analysis for the contrast {wildcards.contrast}"
 
 datasets:
   spia_table:
@@ -9,7 +9,7 @@ datasets:
 
 default-view: spia_table
 
-views:
+kkkkviews:
   spia_table:
     dataset: spia_table
     desc: |

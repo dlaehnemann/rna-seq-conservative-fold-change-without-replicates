@@ -1,6 +1,6 @@
 __use_yte__: true
 
-name: ?f"Conservative fold change estimates for the contrast of {wildcards.sample_changed}-{wildcards.unit_changed} vs. {wildcards.sample_baseline}-{wildcards.unit_baseline}."
+name: ?f"Conservative fold change estimates for the contrast {wildcards.contrast}"
 
 datasets:
   gfold_table:

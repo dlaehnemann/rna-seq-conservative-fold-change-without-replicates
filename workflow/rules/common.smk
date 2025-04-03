@@ -6,25 +6,24 @@ import yaml
 
 def final_output(wildcards):
     final_output = []
-    for c in config["gfold"]["contrasts"]:
-        contrast = config["gfold"]["contrasts"][c]
+    for contrast in config["gfold"]["contrasts"]:
         final_output.extend(
             [
-                f"results/gfold/{contrast['changed']}_vs_{contrast['baseline']}.tsv",
-                f"results/datavzrd-reports/gfold/{contrast['changed']}_vs_{contrast['baseline']}",
+                f"results/gfold/{contrast}.tsv",
+                f"results/datavzrd-reports/gfold/{contrast}",
             ]
         )
         if config["enrichment"]["spia"]["activate_gfold"]:
             final_output.extend(
                 [
-                    f"results/datavzrd-reports/spia/{contrast['changed']}_vs_{contrast['baseline']}",
+                    f"results/datavzrd-reports/spia/{contrast}",
                 ]
             )
         if config["enrichment"]["gseapy"]["activate_gfold"]:
             final_output.extend(
                 expand(
                     "results/datavzrd/gseapy/{contrast}/{enrichr_library}",
-                    contrast=f"{contrast['changed']}_vs_{contrast['baseline']}",
+                    contrast=contrast,
                     enrichr_library=config["enrichment"]["enrichr_libraries"],
                 )
             )
