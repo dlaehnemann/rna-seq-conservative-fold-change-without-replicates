@@ -16,11 +16,11 @@ rule gfold:
     input:
         baseline=lambda wc: expand(
             "results/gfold_input/{sample_unit_baseline}.tsv",
-            sample_unit_baseline=lookup(within=config, dpath=f"gfold/contrasts/{wc.contrast}/baseline").split(","),
+            sample_unit_baseline=lookup(within=config, dpath="gfold/contrasts/{contrast}/baseline").split(","),
         ),
         changed=lambda wc: expand(
             "results/gfold_input/{sample_unit_changed}.tsv",
-            sample_unit_changed=lookup(within=config, dpath=f"gfold/contrasts/{wc.contrast}/changed").split(","),
+            sample_unit_changed=lookup(within=config, dpath="gfold/contrasts/{contrast}/changed").split(","),
         ),
     output:
         gfold="results/gfold/{contrast}.tsv",
