@@ -14,18 +14,32 @@ rule kallisto_quant_to_gfold_input:
 
 rule gfold:
     input:
-        baseline="results/gfold_input/{sample_baseline}-{unit_baseline}.tsv",
-        changed="results/gfold_input/{sample_changed}-{unit_changed}.tsv",
+        baseline=expand(
+            "results/gfold_input/{sample_unit_baseline}.tsv",
+            sample_unit_baseline=lookup(
+                within=config, dpath="gfold/contrasts/{contrast}/baseline"
+            ),
+        ),
+        changed=expand(
+            "results/gfold_input/{sample_unit_changed}.tsv",
+            sample_unit_changed=lookup(
+                within=config, dpath="gfold/contrasts/{contrast}/changed"
+            ),
+        ),
     output:
-        gfold="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.tsv",
+        gfold="results/gfold/{contrast}.tsv",
     log:
-        "logs/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
+        "logs/gfold/{contrast}.log",
     conda:
         "../envs/gfold.yaml"
     params:
-        baseline=lambda wc, input: path.splitext(input.baseline)[0],
-        ext=lambda wc, input: path.splitext(input.baseline)[1],
-        changed=lambda wc, input: path.splitext(input.changed)[0],
+        baseline=lambda wc, input: ",".join(
+            [path.splitext(b)[0] for b in input.baseline]
+        ),
+        ext=lambda wc, input: path.splitext(input.baseline[0])[1],
+        changed=lambda wc, input: ",".join([path.splitext(b)[0] for b in input.changed]),
+    resources:
+        mem_mb=10000,
     shell:
         "( gfold diff "
         "    -s1 {params.baseline} "
@@ -38,13 +52,13 @@ rule gfold:
 
 rule clean_and_sort_gfold:
     input:
-        gfold="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.tsv",
+        gfold="results/gfold/{contrast}.tsv",
         transcripts_annotation=get_transcripts_annotation,
     output:
-        cleaned="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
-        all_tested_annotated="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.all_tested_annotated.tsv",
+        cleaned="results/gfold/{contrast}.cleaned_and_sorted.tsv",
+        all_tested_annotated="results/gfold/{contrast}.all_tested_annotated.tsv",
     log:
-        "logs/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.log",
+        "logs/gfold/{contrast}.cleaned_and_sorted.log",
     conda:
         "../envs/tidyverse.yaml"
     params:
@@ -53,37 +67,22 @@ rule clean_and_sort_gfold:
         "../scripts/clean_and_sort_gfold.R"
 
 
-rule render_datavzrd_config_gfold:
-    input:
-        template=workflow.source_path("../resources/datavzrd/gfold_template.yaml"),
-        gfold_table="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
-    output:
-        "results/datavzrd/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.yaml",
-    log:
-        "logs/datavzrd/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.yte_rendering.log",
-    template_engine:
-        "yte"
-
-
 rule gfold_datavzrd:
     input:
-        config="results/datavzrd/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.yaml",
+        config=workflow.source_path("../resources/datavzrd/gfold_template.yaml"),
         # files required for rendering the given configs
-        gfold_table="results/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.cleaned_and_sorted.tsv",
+        gfold_table="results/gfold/{contrast}.cleaned_and_sorted.tsv",
     output:
         report(
-            directory(
-                "results/datavzrd-reports/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"
-            ),
+            directory("results/datavzrd-reports/gfold/{contrast}"),
             htmlindex="index.html",
             caption="../report/gfold_table.rst",
             category="gfold",
             patterns=["index.html"],
-            labels={
-                "contrast": "{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}"
-            },
+            labels={"contrast": "{contrast}"},
         ),
+        config="results/datavzrd/gfold/{contrast}.yaml",
     log:
-        "logs/datavzrd-reports/gfold/{sample_changed}-{unit_changed}_vs_{sample_baseline}-{unit_baseline}.log",
+        "logs/datavzrd-reports/gfold/{contrast}.log",
     wrapper:
-        "v2.12.0/utils/datavzrd"
+        "v5.9.0/utils/datavzrd"

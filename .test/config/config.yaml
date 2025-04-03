@@ -22,8 +22,10 @@ gfold:
       # combinations, as available from the kallisto output (and as usually
       # specified in the units.tsv). Fold changes are computed by comparing
       # the value of `changed` against the value of `baseline`. 
-      baseline: "A-1"
-      changed: "B-1"
+      baseline:
+        - "A-1"
+      changed:
+        - "B-1"
   # only absolute values of gfold_0_01 greater than this value will be
   # considered differentially expressed for downstream analysis
   gfold_0_01_cutoff: "0.01"

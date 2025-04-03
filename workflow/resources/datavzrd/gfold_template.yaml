@@ -1,14 +1,19 @@
-name: ?f"Conservative fold change estimates for the contrast of {wildcards.sample_changed}-{wildcards.unit_changed} vs. {wildcards.sample_baseline}-{wildcards.unit_baseline}."
+__use_yte__: true
+
+name: ?f"Conservative fold change estimates for the contrast {wildcards.contrast}"
+
 datasets:
   gfold_table:
     path: ?input.gfold_table
     separator: "\t"
+
 default-view: gfold_table
+
 views:
   gfold_table:
     dataset: gfold_table
     desc: |
-        ?f"Conservative fold change estimates for the contrast of {wildcards.sample_changed}-{wildcards.unit_changed} vs. {wildcards.sample_baseline}-{wildcards.unit_baseline}."
+        ?f"Conservative fold change estimates for the contrast {wildcards.contrast}."
     page-size: 25
     render-table:
       columns:
