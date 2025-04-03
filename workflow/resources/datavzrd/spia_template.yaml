@@ -9,7 +9,7 @@ datasets:
 
 default-view: spia_table
 
-kkkkviews:
+views:
   spia_table:
     dataset: spia_table
     desc: |
