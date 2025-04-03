@@ -25,9 +25,7 @@ rule spia_datavzrd:
         spia_table="results/spia/tables/{contrast}.spia_pathways.tsv",
     output:
         report(
-            directory(
-                "results/datavzrd-reports/spia/{contrast}"
-            ),
+            directory("results/datavzrd-reports/spia/{contrast}"),
             htmlindex="index.html",
             caption="../report/spia_table.rst",
             category="Enrichment analysis",
@@ -72,9 +70,7 @@ use rule spia_datavzrd as gseapy_datavzrd with:
         enrichment="results/gseapy/{contrast}/{enrichr_library}.tsv",
     output:
         report(
-            directory(
-                "results/datavzrd/gseapy/{contrast}/{enrichr_library}"
-            ),
+            directory("results/datavzrd/gseapy/{contrast}/{enrichr_library}"),
             htmlindex="index.html",
             category="Enrichment analysis",
             subcategory="gseapy: {enrichr_library}",

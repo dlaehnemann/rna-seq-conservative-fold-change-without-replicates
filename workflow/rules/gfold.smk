@@ -16,11 +16,15 @@ rule gfold:
     input:
         baseline=expand(
             "results/gfold_input/{sample_unit_baseline}.tsv",
-            sample_unit_baseline=lookup(within=config, dpath="gfold/contrasts/{contrast}/baseline"),
+            sample_unit_baseline=lookup(
+                within=config, dpath="gfold/contrasts/{contrast}/baseline"
+            ),
         ),
         changed=expand(
             "results/gfold_input/{sample_unit_changed}.tsv",
-            sample_unit_changed=lookup(within=config, dpath="gfold/contrasts/{contrast}/changed"),
+            sample_unit_changed=lookup(
+                within=config, dpath="gfold/contrasts/{contrast}/changed"
+            ),
         ),
     output:
         gfold="results/gfold/{contrast}.tsv",
@@ -29,7 +33,9 @@ rule gfold:
     conda:
         "../envs/gfold.yaml"
     params:
-        baseline=lambda wc, input: ",".join([path.splitext(b)[0] for b in input.baseline]),
+        baseline=lambda wc, input: ",".join(
+            [path.splitext(b)[0] for b in input.baseline]
+        ),
         ext=lambda wc, input: path.splitext(input.baseline[0])[1],
         changed=lambda wc, input: ",".join([path.splitext(b)[0] for b in input.changed]),
     shell:
@@ -66,16 +72,12 @@ rule gfold_datavzrd:
         gfold_table="results/gfold/{contrast}.cleaned_and_sorted.tsv",
     output:
         report(
-            directory(
-                "results/datavzrd-reports/gfold/{contrast}"
-            ),
+            directory("results/datavzrd-reports/gfold/{contrast}"),
             htmlindex="index.html",
             caption="../report/gfold_table.rst",
             category="gfold",
             patterns=["index.html"],
-            labels={
-                "contrast": "{contrast}"
-            },
+            labels={"contrast": "{contrast}"},
         ),
         config="results/datavzrd/gfold/{contrast}.yaml",
     log:
