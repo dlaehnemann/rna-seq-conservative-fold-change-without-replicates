@@ -15,12 +15,12 @@ rule kallisto_quant_to_gfold_input:
 rule gfold:
     input:
         baseline=lambda wc: expand(
-            "results/gfold_input/{sample_unit}.tsv",
+            "results/gfold_input/{sample_unit_baseline}.tsv",
             sample_unit_baseline=lookup(within=config, dpath="gfold/contrasts/{wc.contrast}/baseline").split(","),
         ),
         changed=lambda wc: expand(
-            "results/gfold_input/{sample_unit}.tsv",
-            sample_unit_baseline=lookup(within=config, dpath="gfold/contrasts/{wc.contrast}/baseline").split(","),
+            "results/gfold_input/{sample_unit_changed}.tsv",
+            sample_unit_changed=lookup(within=config, dpath="gfold/contrasts/{wc.contrast}/changed").split(","),
         ),
     output:
         gfold="results/gfold/{contrast}.tsv",
