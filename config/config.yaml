@@ -29,8 +29,11 @@ gfold:
       # available.
       # Fold changes are computed by comparing the value of `changed` samples
       # against the value of `baseline` samples. 
-      baseline: "A-1,C-1"
-      changed: "B-1"
+      baseline:
+        - "A-1"
+        - "C-1"
+      changed:
+        - "B-1"
   # only absolute values of gfold_0_01 greater than this value will be
   # considered differentially expressed for downstream analysis
   gfold_0_01_cutoff: 1.0
