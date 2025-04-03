@@ -11,22 +11,13 @@
 
 ### Bug Fixes
 
-* add rendered datavzrd yaml configs to rules' output ([a48c48c](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/a48c48cc1d869974185fecc4c98335f71ecc70f8))
 * adjust config to new sample spec under baseline and changed ([4eecc30](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/4eecc306a0d354d01bd1f45391a482f68ddfc6c2))
-* correct naming of input file ([5d531de](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/5d531de99f5e91c59df6c25c536133b12a391f4e))
-* further syntax issues ([3644d75](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/3644d75384fc7a3a39c979d1003d023c9292fb29))
 * gfold mem_mb usage seems to max out around 8000, so we give it some buffer with 10000 ([ad5bfa7](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/ad5bfa7f1052760e48224fab8c92448f19b7ef2c))
 * latest datavzrd wrapper, ci updates, multiple samples for baseline and/or changed ([566d851](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/566d851a00cb23572b9320d3aae7b42ed8c12d6d))
-* slightly decrease mem_mb requirements for gfold after checking rule instances logs ([bb011cf](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/bb011cf6273eb498786b4c78bfe5fa156bfb36d5))
-* swiitch to latest datavzrd wrapper (all the features, template rendering included) ([82d0d1d](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/82d0d1de25fe749590da5402c605bd87dfc7ac56))
-* try dynamic memory requirements for gfold ([9785651](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/978565108a75119005f0ba3547cf3520e1d5aa64))
-* try f-string syntax ([e5b8071](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/e5b8071bf64c810b7b0a8633300773b85daf219f))
+* switch to latest datavzrd wrapper (all the features, template rendering included) ([82d0d1d](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/82d0d1de25fe749590da5402c605bd87dfc7ac56))
 * try with list of sample names under baselin and changed ([a8899fa](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/a8899faf67efd13dd8125eb8d1dae973fe9b9545))
-* try without wc. syntax, but with lambda ([aa736e6](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/aa736e6627ff84f9eb61228e89e19abf7a1fe232))
 * turn on yte rendering of templates ([2983422](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/298342245a7890427e05019caac8381e8f06f521))
-* typo ([40868cb](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/40868cbf5fc656a6f5118426a1f0b53b99949070))
 * update wildcards in yte datavzrd template ([7217355](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/7217355035c8ccf976d2ab573514bc2e8548f34d))
-* vim typo ([a6a8b97](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/a6a8b9713c7c974c4aa9a65075f7261aa648fdcc))
 
 ## [1.4.0](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/compare/v1.3.0...v1.4.0) (2025-03-25)
 
