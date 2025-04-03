@@ -39,7 +39,7 @@ rule gfold:
         ext=lambda wc, input: path.splitext(input.baseline[0])[1],
         changed=lambda wc, input: ",".join([path.splitext(b)[0] for b in input.changed]),
     resources:
-        mem_mb = lambda wc, input: 400 * input.size_mb
+        mem_mb = 10000
     shell:
         "( gfold diff "
         "    -s1 {params.baseline} "
