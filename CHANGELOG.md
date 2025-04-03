@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.5.0](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/compare/v1.4.0...v1.5.0) (2025-04-03)
+
+
+### Features
+
+* make use of multiple samples when listed in config ([d7359eb](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/d7359ebc216dc37c29c8f0ced3ee752644efd825))
+* showcase in example config/config.yaml, that multiple samples can be specified for both baseline and changed ([e0e3e60](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/e0e3e6091849853ae31c5785cf03ee20b9be583a))
+
+
+### Bug Fixes
+
+* adjust config to new sample spec under baseline and changed ([4eecc30](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/4eecc306a0d354d01bd1f45391a482f68ddfc6c2))
+* gfold mem_mb usage seems to max out around 8000, so we give it some buffer with 10000 ([ad5bfa7](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/ad5bfa7f1052760e48224fab8c92448f19b7ef2c))
+* latest datavzrd wrapper, ci updates, multiple samples for baseline and/or changed ([566d851](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/566d851a00cb23572b9320d3aae7b42ed8c12d6d))
+* switch to latest datavzrd wrapper (all the features, template rendering included) ([82d0d1d](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/82d0d1de25fe749590da5402c605bd87dfc7ac56))
+* try with list of sample names under baselin and changed ([a8899fa](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/a8899faf67efd13dd8125eb8d1dae973fe9b9545))
+* turn on yte rendering of templates ([2983422](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/298342245a7890427e05019caac8381e8f06f521))
+* update wildcards in yte datavzrd template ([7217355](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/7217355035c8ccf976d2ab573514bc2e8548f34d))
+
 ## [1.4.0](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/compare/v1.3.0...v1.4.0) (2025-03-25)
 
 
