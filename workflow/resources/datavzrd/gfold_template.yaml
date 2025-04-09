@@ -1,6 +1,7 @@
 __use_yte__: true
 
-name: ?f"Conservative fold change estimates for the contrast {wildcards.contrast}"
+name: |
+  ?f"Conservative fold change estimates for the contrast {wildcards.contrast}."
 
 datasets:
   gfold_table:
@@ -13,7 +14,11 @@ views:
   gfold_table:
     dataset: gfold_table
     desc: |
-        ?f"Conservative fold change estimates for the contrast {wildcards.contrast}."
+      ?f"""
+      Conservative fold change estimates for the contrast {wildcards.contrast}.
+
+      gfold_0_01 is the GFOLD value at the significance cutoff 0.01. This can be interpreted as a probability of 0.99 that the log2 fold change is greater than the reported GFOLD value (in absolute terms). Only (absolute) GFOLD values above the threshold of {params.gfold_0_01_cutoff} are reported."
+      """
     page-size: 25
     render-table:
       columns:
