@@ -47,12 +47,12 @@ views:
                 - "#2166AC"
               domain-mid: 0
         e_fdr:
-          display-mode: details
+          display-mode: detail
           plot:
             ticks:
               scale: linear
         log2fdc:
-          display-mode: details
+          display-mode: detail
           plot:
             heatmap:
               scale: linear
