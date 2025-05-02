@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.5.1](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/compare/v1.5.0...v1.5.1) (2025-05-02)
+
+
+### Bug Fixes
+
+* datavzrd display-mode with correct keyword detail ([696926a](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/696926a8fde2b254d781f52e8507d6d84ee2bacf))
+* improve description of gfold datavzrd table ([ff48a69](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/ff48a69d3ee0cd956e1df7195bac70167ad638c6))
+* improve gfold reporting ([77136b1](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/77136b18cb0c0513c408d91bb02d50a75f8ac933))
+* make contrast wildcard unambiguous ([1d75228](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/1d75228c47843e8f26a2f3d98abb889bf8b7af8b))
+* make contrast wildcard unambiguous, 28 GB RAM for spia ([d8e88fb](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/d8e88fb5b577c293eecb6fd10372242548e2e22e))
+* put e_fdr and log2fc into details, as gfold_0_01 is the main variable of interest and e_fdr is only useful if multiple replicates are available for both conditions ([0f0b07d](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/0f0b07da6ebc164b2b0f7b73f280f08343ba27e5))
+* request 28 GB RAM for rule spia ([aae9c79](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/aae9c79729914804d473e3559840c84921923134))
+* revet .test/config/config.yaml threshold for gfold cutoff to 0.01 to get some fold changes during testing ([71d9324](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/71d9324d722717d29eaaffe90cb21f08d1bf344c))
+* sort by absolute gfold_0_01 value ([8f31e52](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/commit/8f31e5210ae7550a9e42d6ec6ab4bbdfc501c286))
+
 ## [1.5.0](https://github.com/dlaehnemann/rna-seq-conservative-fold-change-without-replicates/compare/v1.4.0...v1.5.0) (2025-04-03)
 
 
