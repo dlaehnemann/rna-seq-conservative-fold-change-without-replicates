@@ -62,7 +62,7 @@ rule clean_and_sort_gfold:
     conda:
         "../envs/tidyverse.yaml"
     params:
-        gfold_0_01_cutoff=config["gfold"]["gfold_0_01_cutoff"],
+        gfold_0_01_cutoff=lookup(within=config, dpath="gfold/gfold_0_01_cutoff"),
     script:
         "../scripts/clean_and_sort_gfold.R"
 
@@ -84,5 +84,7 @@ rule gfold_datavzrd:
         config="results/datavzrd/gfold/{contrast}.yaml",
     log:
         "logs/datavzrd-reports/gfold/{contrast}.log",
+    params:
+        gfold_0_01_cutoff=lookup(within=config, dpath="gfold/gfold_0_01_cutoff"),
     wrapper:
         "v5.9.0/utils/datavzrd"
