@@ -14,7 +14,7 @@ rule spia:
     log:
         "logs/enrichment/spia/{contrast}.spia_pathways.log",
     resources:
-        mem_mb = 28000
+        mem_mb=28000,
     threads: 32
     script:
         "../scripts/spia.R"

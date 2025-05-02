@@ -30,10 +30,13 @@ def final_output(wildcards):
 
     return final_output
 
+
 # make wildcards unambiguous
 
+
 wildcard_constraints:
-    contrast="|".join(lookup(within=config, dpath="gfold/contrasts"))
+    contrast="|".join(lookup(within=config, dpath="gfold/contrasts")),
+
 
 # helper / setup functions
 
