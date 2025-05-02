@@ -87,4 +87,4 @@ rule gfold_datavzrd:
     params:
         gfold_0_01_cutoff=lookup(within=config, dpath="gfold/gfold_0_01_cutoff"),
     wrapper:
-        "v5.9.0/utils/datavzrd"
+        "v6.0.1/utils/datavzrd"

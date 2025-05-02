@@ -44,7 +44,7 @@ rule spia_datavzrd:
     params:
         pathway_db=config["enrichment"]["spia"]["pathway_database"],
     wrapper:
-        "v5.9.0/utils/datavzrd"
+        "v6.0.1/utils/datavzrd"
 
 
 rule gseapy:
