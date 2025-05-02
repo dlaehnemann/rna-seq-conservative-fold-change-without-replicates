@@ -48,7 +48,7 @@ all_tested_annotated |>
     abs(gfold_0_01) > gfold_0_01_cutoff
   ) |>
   arrange(
-    desc(gfold_0_01)
+    desc(abs(gfold_0_01))
   ) |>
   write_tsv(
     snakemake@output[["cleaned"]],
